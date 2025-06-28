@@ -1,0 +1,12 @@
+###
+GRPC localhost:9001/ProductCatalogService/updateProduct
+
+{
+  "productCategory": "officia est ipsum sed",
+  "productDescription": "anim",
+  "productId": "1",
+  "productName": "dolor Ut cupidatat proident",
+  "productPrice": 439,
+  "productQuantity": 4233
+}
+###

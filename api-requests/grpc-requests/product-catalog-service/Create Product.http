@@ -1,0 +1,11 @@
+###
+GRPC localhost:9001/ProductCatalogService/createProduct
+
+{
+  "productCategory": "Test",
+  "productDescription": "Test Product",
+  "productName": "test1",
+  "productPrice": 66,
+  "productQuantity": 400
+}
+###
