@@ -1,0 +1,10 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: product-catalog-db
+    environment:
+        - POSTGRES_USER=admin
+        - POSTGRES_PASSWORD=admin
+        - POSTGRES_DB=product-catalog
+    ports:
+        - "5430:5432"
