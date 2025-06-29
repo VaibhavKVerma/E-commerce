@@ -11,6 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 public class Product {
     String id;
+    String name;
     Integer quantity;
     String description;
     String category;

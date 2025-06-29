@@ -1,0 +1,10 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: order-db
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=order
+    ports:
+      - "5431:5432"
