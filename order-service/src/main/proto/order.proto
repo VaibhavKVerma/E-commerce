@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "ordergrpc";
+option java_outer_classname = "OrderGrpcService";
+
+service OrderService {
+  // UNARY
+  rpc createOrder(CreateOrderRequest) returns (OrderResponse);
+  rpc getOrderDetails(GetOrderDetailsRequest) returns (OrderResponse);
+  rpc updateOrderStatus(UpdateOrderStatusRequest) returns (OrderResponse);
+}
+
+message CreateOrderRequest {
+  string userId = 1;
+  repeated Product products = 2;
+}
+
+message Product {
+  string productId = 1;
+  string productQuantity = 2;
+}
+
+message ProductInfo {
+  string productId = 1;
+  string productQuantity = 2;
+  string productDescription = 3;
+  string productCategory = 4;
+}
+
+message GetOrderDetailsRequest {
+  string orderId = 1;
+}
+
+message UpdateOrderStatusRequest {
+  string orderId = 1;
+  string status = 2;
+}
+
+message OrderResponse {
+  string orderId = 1;
+  string status = 2;
+  string userId = 3;
+  repeated ProductInfo products = 4;
+}

@@ -5,19 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2323fba-2209-437f-bf3b-b98168deaf5d" name="Changes" comment="Product Catalog Service Implementation">
-      <change afterPath="$PROJECT_DIR$/api-requests/grpc-requests/product-catalog-service/Create Product.http" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api-requests/grpc-requests/product-catalog-service/Get Product By Id.http" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-catalog-service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/entity/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/entity/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/enums/OrderStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/grpc/ProductCatalogGrpcClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/repository/OrderRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/service/OrderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/proto/order.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/proto/product-catalog.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-catalog-service/src/main/proto/product-catalog.proto" beforeDir="false" afterPath="$PROJECT_DIR$/product-catalog-service/src/main/proto/product-catalog.proto" afterDir="false" />
     </list>
-    <list id="0a097596-d667-43f0-8e77-3f07cf02b2f5" name="Unversioned" comment="Unversioned">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/a51e4663-4491-4146-b2b3-3b6d2dc53ff1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/a51e4663-4491-4146-b2b3-3b6d2dc53ff1/storage_v2/_src_/database/product-catalog.O7GZaA.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/a51e4663-4491-4146-b2b3-3b6d2dc53ff1/storage_v2/_src_/database/product-catalog.O7GZaA/schema/information_schema.FNRwLQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/a51e4663-4491-4146-b2b3-3b6d2dc53ff1/storage_v2/_src_/database/product-catalog.O7GZaA/schema/pg_catalog.0S1ZNQ.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/a51e4663-4491-4146-b2b3-3b6d2dc53ff1/storage_v2/_src_/database/product-catalog.O7GZaA/schema/public.abK9xQ.meta" afterDir="false" />
-    </list>
+    <list id="0a097596-d667-43f0-8e77-3f07cf02b2f5" name="Unversioned" comment="Unversioned" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,26 +30,27 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="HTTP Request" />
+        <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "VaibhavKVerma"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;VaibhavKVerma&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/VaibhavKVerma/E-commerce.git",
-    "accountId": "c61eb23d-866e-4044-8b3a-482926041058"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:VaibhavKVerma/E-commerce.git&quot;,
+    &quot;accountId&quot;: &quot;c61eb23d-866e-4044-8b3a-482926041058&quot;
   }
-}]]></component>
+}</component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -82,12 +86,15 @@
     "Spring Boot.ProductCatalogServiceApplication.executor": "Run",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Vaibhav Verma/Downloads/Backend Projects/E-commerce",
+    "last_opened_file_path": "C:/Users/Vaibhav Verma/Downloads/Backend Projects/E-commerce/order-service/src/main/proto",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
@@ -99,6 +106,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Vaibhav Verma\Downloads\Backend Projects\E-commerce\order-service\src\main\proto" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Vaibhav Verma\Downloads\Backend Projects\E-commerce\product-catalog-service" />
     </key>
@@ -127,6 +137,24 @@
     <configuration name="Get Product By Id | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/api-requests/grpc-requests/product-catalog-service/Get Product By Id.http" executionIdentifier="#1" runType="Run single request">
       <method v="2" />
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="E-commerce" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="E-commerce" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration name="OrderServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="order-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.ecommerce.orderservice.OrderServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ProductCatalogServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="product-catalog-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ecommerce.productcatalogservice.ProductCatalogServiceApplication" />
@@ -135,7 +163,9 @@
       </method>
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml" />
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
     <configuration name="product-catalog-service: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
@@ -176,6 +206,8 @@
       <workItem from="1751139723912" duration="176000" />
       <workItem from="1751139942569" duration="799000" />
       <workItem from="1751140763677" duration="7491000" />
+      <workItem from="1751152382784" duration="161000" />
+      <workItem from="1751152602276" duration="3166000" />
     </task>
     <task id="LOCAL-00001" summary="Product Catalog Service Implementation">
       <option name="closed" value="true" />

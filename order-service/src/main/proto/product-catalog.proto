@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "productcataloggrpc";
+option java_outer_classname = "ProductCatalogGrpcService";
+
+service ProductCatalogService {
+  // UNARY
+  rpc createProduct(CreateProductRequest) returns (ProductResponse);
+  rpc getProduct(GetProductRequest) returns (ProductResponse);
+  rpc updateProduct(UpdateProductRequest) returns (ProductResponse);
+  rpc deleteProduct(DeleteProductRequest) returns (Empty);
+}
+
+message CreateProductRequest {
+  string productName = 1;
+  string productDescription = 2;
+  string productCategory = 3;
+  double productPrice = 4;
+  int32 productQuantity = 5;
+}
+
+message GetProductRequest {
+  string productId = 1;
+}
+
+message UpdateProductRequest {
+  string productId = 1;
+  string productName = 2;
+  string productDescription = 3;
+  string productCategory = 4;
+  double productPrice = 5;
+  int32 productQuantity = 6;
+}
+
+message DeleteProductRequest {
+  string productId = 1;
+}
+
+message ProductResponse {
+  string productId = 1;
+  string productName = 2;
+  string productDescription = 3;
+  string productCategory = 4;
+  double productPrice = 5;
+  int32 productQuantity = 6;
+}
+
+message Empty {
+
+}
+
