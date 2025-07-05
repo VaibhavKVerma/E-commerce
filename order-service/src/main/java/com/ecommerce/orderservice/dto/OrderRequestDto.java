@@ -15,6 +15,6 @@ public class OrderRequestDto {
     private Long id;
     private List<Product> products;
     private Long userId;
-    private double amount;
+    private Double amount;
     private OrderStatus status;
 }

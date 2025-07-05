@@ -27,7 +27,7 @@ public class Order {
     private Long userId;
 
     @Column(nullable = false)
-    private double amount;
+    private Double amount;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

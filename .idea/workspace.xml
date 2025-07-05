@@ -4,27 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2323fba-2209-437f-bf3b-b98168deaf5d" name="Changes" comment="Order Service Implementation 1">
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/config/AsyncConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/dto/OrderRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/dto/OrderResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/mapper/OrderGrpcMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/mapper/OrderMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/product-catalog-service/src/main/resources/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+    <list default="true" id="d2323fba-2209-437f-bf3b-b98168deaf5d" name="Changes" comment="Order Service Implementation with Multithreaded Grpc Requests for fetching product details">
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/service/OrderServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/service/OrderState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/service/statehandler/CreatedState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/service/statehandler/PendingState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/dto/OrderRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/dto/OrderRequestDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/entity/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/entity/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/mapper/OrderGrpcMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/mapper/OrderGrpcMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/repository/OrderRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/service/OrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/service/OrderServiceGrpcImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/service/OrderServiceGrpcImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/proto/product-catalog.proto" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/proto/product-catalog.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-catalog-service/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/product-catalog-service/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-catalog-service/src/main/java/com/ecommerce/productcatalogservice/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-catalog-service/src/main/java/com/ecommerce/productcatalogservice/entity/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-catalog-service/src/main/java/com/ecommerce/productcatalogservice/mapper/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/product-catalog-service/src/main/java/com/ecommerce/productcatalogservice/mapper/ProductMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-catalog-service/src/main/proto/product-catalog.proto" beforeDir="false" afterPath="$PROJECT_DIR$/product-catalog-service/src/main/proto/product-catalog.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order-service/src/main/proto/order.proto" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/proto/order.proto" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product-catalog-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/product-catalog-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product-catalog-service/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/product-catalog-service/src/main/resources/data.sql" afterDir="false" />
     </list>
     <list id="0a097596-d667-43f0-8e77-3f07cf02b2f5" name="Unversioned" comment="Unversioned" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,9 +30,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="HTTP Request" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -104,7 +99,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -226,7 +221,7 @@
       <workItem from="1751222081303" duration="13000" />
       <workItem from="1751222107817" duration="153000" />
       <workItem from="1751450706736" duration="8360000" />
-      <workItem from="1751703655070" duration="3909000" />
+      <workItem from="1751703655070" duration="12222000" />
     </task>
     <task id="LOCAL-00001" summary="Product Catalog Service Implementation">
       <option name="closed" value="true" />
@@ -244,7 +239,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751155829978</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Order Service Implementation with Multithreaded Grpc Requests for fetching product details">
+      <option name="closed" value="true" />
+      <created>1751708118364</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1751708118364</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,6 +256,17 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Product Catalog Service Implementation" />
     <MESSAGE value="Order Service Implementation 1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Order Service Implementation 1" />
+    <MESSAGE value="Order Service Implementation with Multithreaded Grpc Requests for fetching product details" />
+    <option name="LAST_COMMIT_MESSAGE" value="Order Service Implementation with Multithreaded Grpc Requests for fetching product details" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.hibernate.LazyInitializationException" package="org.hibernate" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

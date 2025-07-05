@@ -15,7 +15,8 @@ public class OrderGrpcMapper {
         OrderResponse.Builder orderResponseBuilder = OrderResponse.newBuilder();
         orderResponseBuilder.setOrderId(responseDto.getId().toString())
                 .setStatus(responseDto.getStatus().name())
-                .setUserId(responseDto.getUserId().toString());
+                .setUserId(responseDto.getUserId().toString())
+                .setAmount(String.valueOf(responseDto.getAmount()));
 
         for (Product product : responseDto.getProducts()) {
             ProductInfo productInfo = ProductInfo.newBuilder()
@@ -31,12 +32,10 @@ public class OrderGrpcMapper {
     }
 
     public static OrderRequestDto toDto(CreateOrderRequest request, List<Product> products) {
-        double amount = products.stream().mapToDouble(Product::getAmount).sum();
         return OrderRequestDto.builder()
                 .userId(Long.valueOf(request.getUserId()))
                 .status(OrderStatus.CREATED)
                 .products(products)
-                .amount(amount)
                 .build();
     }
 }

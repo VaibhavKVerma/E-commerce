@@ -16,16 +16,4 @@ public class Product {
     String description;
     String category;
     Double amount;
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", quantity=" + quantity +
-                ", description='" + description + '\'' +
-                ", category='" + category + '\'' +
-                ", amount=" + amount +
-                '}';
-    }
 }

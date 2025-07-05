@@ -60,7 +60,7 @@ public class OrderServiceGrpcImpl extends OrderServiceGrpc.OrderServiceImplBase 
         );
 
         allFutures.whenComplete((v, throwable) -> {
-            if(throwable != null) {
+            if (throwable != null) {
                 responseObserver.onError(Status.NOT_FOUND.withDescription(throwable.getMessage()).asException());
             } else {
                 List<Product> products = futures.stream().map(CompletableFuture::join).toList();
@@ -80,7 +80,14 @@ public class OrderServiceGrpcImpl extends OrderServiceGrpc.OrderServiceImplBase 
 
     @Override
     public void getOrderDetails(GetOrderDetailsRequest request, StreamObserver<OrderResponse> responseObserver) {
-
+        Long orderId = Long.valueOf(request.getOrderId());
+        OrderResponseDto response = orderService.getOrder(orderId);
+        if(response == null) {
+            responseObserver.onError(Status.NOT_FOUND.withDescription("Order with id " + orderId + " not found.").asException());
+            return;
+        }
+        responseObserver.onNext(OrderGrpcMapper.toResponse(response));
+        responseObserver.onCompleted();
     }
 
     @Override

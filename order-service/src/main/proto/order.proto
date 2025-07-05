@@ -42,4 +42,5 @@ message OrderResponse {
   string status = 2;
   string userId = 3;
   repeated ProductInfo products = 4;
+  string amount = 5;
 }
