@@ -17,7 +17,6 @@ message CreateProductRequest {
   string productDescription = 2;
   string productCategory = 3;
   double productPrice = 4;
-  int32 productQuantity = 5;
 }
 
 message GetProductRequest {
@@ -30,7 +29,6 @@ message UpdateProductRequest {
   string productDescription = 3;
   string productCategory = 4;
   double productPrice = 5;
-  int32 productQuantity = 6;
 }
 
 message DeleteProductRequest {
@@ -43,7 +41,6 @@ message ProductResponse {
   string productDescription = 3;
   string productCategory = 4;
   double productPrice = 5;
-  int32 productQuantity = 6;
 }
 
 message Empty {

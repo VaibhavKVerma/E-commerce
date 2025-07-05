@@ -1,34 +1,81 @@
 package com.ecommerce.orderservice.service;
 
+import com.ecommerce.orderservice.dto.OrderResponseDto;
 import com.ecommerce.orderservice.entity.Product;
 import com.ecommerce.orderservice.grpc.ProductCatalogGrpcClient;
+import com.ecommerce.orderservice.mapper.OrderGrpcMapper;
+import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
-import lombok.RequiredArgsConstructor;
 import ordergrpc.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.grpc.server.service.GrpcService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
+import java.util.concurrent.Executor;
 
 @GrpcService
-@RequiredArgsConstructor
 public class OrderServiceGrpcImpl extends OrderServiceGrpc.OrderServiceImplBase {
     private static final Logger log = LoggerFactory.getLogger(OrderServiceGrpcImpl.class);
     private final ProductCatalogGrpcClient productCatalogGrpcClient;
+    private final OrderService orderService;
+    private final Executor productCatalogAsyncExecutor;
+
+    @Autowired
+    public OrderServiceGrpcImpl(ProductCatalogGrpcClient productCatalogGrpcClient,
+                                OrderService orderService,
+                                @Qualifier("ProductCatalogAsyncExecutor") Executor productCatalogAsyncExecutor) {
+        this.orderService = orderService;
+        this.productCatalogGrpcClient = productCatalogGrpcClient;
+        this.productCatalogAsyncExecutor = productCatalogAsyncExecutor;
+    }
 
     @Override
     public void createOrder(CreateOrderRequest request, StreamObserver<OrderResponse> responseObserver) {
-        List<Product> products = request
-                .getProductsList()
-                .stream()
-                .map(product -> productCatalogGrpcClient.getProductDetails(product.getProductId()))
-                .toList();
+        List<CompletableFuture<Product>> futures = new ArrayList<>();
+        for (var productRequest : request.getProductsList()) {
+            CompletableFuture<Product> future = CompletableFuture.supplyAsync(() -> {
+                log.info("Getting Product Details on thread : {}", Thread.currentThread().getName());
+                Product product = productCatalogGrpcClient.getProductDetails(productRequest.getProductId());
+                if (product == null) {
+                    throw new CompletionException(
+                            Status.NOT_FOUND
+                                    .withDescription("Product not found: " + productRequest.getProductId())
+                                    .asRuntimeException()
+                    );
+                }
+                product.setQuantity(Integer.parseInt(productRequest.getProductQuantity()));
+                return product;
+            }, productCatalogAsyncExecutor);
+            futures.add(future);
+        }
 
-        products.forEach(product ->
-                log.info("Product info : {}", product.getName()));
+        CompletableFuture<Void> allFutures = CompletableFuture.allOf(
+                futures.toArray(new CompletableFuture[0])
+        );
 
-        responseObserver.onCompleted();
+        allFutures.whenComplete((v, throwable) -> {
+            if(throwable != null) {
+                responseObserver.onError(Status.NOT_FOUND.withDescription(throwable.getMessage()).asException());
+            } else {
+                List<Product> products = futures.stream().map(CompletableFuture::join).toList();
+                if (products.isEmpty()) {
+                    log.error("Invalid Order Request");
+                    responseObserver.onError(Status.INVALID_ARGUMENT
+                            .withDescription("Invalid Order Request")
+                            .asRuntimeException());
+                    return;
+                }
+                OrderResponseDto response = orderService.createOrder(OrderGrpcMapper.toDto(request, products));
+                responseObserver.onNext(OrderGrpcMapper.toResponse(response));
+                responseObserver.onCompleted();
+            }
+        });
     }
 
     @Override

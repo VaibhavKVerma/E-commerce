@@ -29,9 +29,6 @@ public class Product {
     private String category;
 
     @Column(nullable = false)
-    private Integer quantity;
-
-    @Column(nullable = false)
     private Boolean recordStatus = true;
 
     @Column(nullable = false, updatable = false)

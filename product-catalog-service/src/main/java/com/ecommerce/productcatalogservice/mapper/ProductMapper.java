@@ -15,7 +15,6 @@ public class ProductMapper {
                 .description(request.getProductDescription())
                 .category(request.getProductCategory())
                 .price(request.getProductPrice())
-                .quantity(request.getProductQuantity())
                 .recordStatus(true)
                 .updatedAt(Instant.now())
                 .createdAt(Instant.now())
@@ -31,9 +30,6 @@ public class ProductMapper {
         if (request.getProductPrice() > 0) {
             existingProduct.setPrice(request.getProductPrice());
         }
-        if (request.getProductQuantity() >= 0) {
-            existingProduct.setQuantity(request.getProductQuantity());
-        }
         existingProduct.setUpdatedAt(Instant.now());
         return existingProduct;
     }
@@ -43,9 +39,9 @@ public class ProductMapper {
                 .newBuilder()
                 .setProductName(product.getName())
                 .setProductDescription(product.getDescription())
-                .setProductQuantity(product.getQuantity())
                 .setProductCategory(product.getCategory())
                 .setProductId(product.getId().toString())
+                .setProductPrice(product.getPrice())
                 .build();
     }
 }
