@@ -1,0 +1,18 @@
+syntax = "3";
+
+option java_multiple_files = true;
+option java_outer_classname = "InventoryGrpcService";
+option java_package = "inventorygrpc";
+
+service InventoryService {
+  // unary
+  rpc getItemInventory (GetItemInventoryRequest) returns (GetItemInventoryResponse);
+}
+
+message GetItemInventoryRequest {
+
+}
+
+message GetItemInventoryResponse {
+
+}
