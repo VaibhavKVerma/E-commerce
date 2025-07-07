@@ -2,6 +2,7 @@ package com.ecommerce.orderservice.service;
 
 import com.ecommerce.orderservice.dto.OrderResponseDto;
 import com.ecommerce.orderservice.entity.Product;
+import com.ecommerce.orderservice.grpc.InventoryGrpcClient;
 import com.ecommerce.orderservice.grpc.ProductCatalogGrpcClient;
 import com.ecommerce.orderservice.mapper.OrderGrpcMapper;
 import io.grpc.Status;
@@ -23,16 +24,19 @@ import java.util.concurrent.Executor;
 public class OrderServiceGrpcImpl extends OrderServiceGrpc.OrderServiceImplBase {
     private static final Logger log = LoggerFactory.getLogger(OrderServiceGrpcImpl.class);
     private final ProductCatalogGrpcClient productCatalogGrpcClient;
+    private final InventoryGrpcClient inventoryGrpcClient;
     private final OrderService orderService;
     private final Executor productCatalogAsyncExecutor;
 
     @Autowired
     public OrderServiceGrpcImpl(ProductCatalogGrpcClient productCatalogGrpcClient,
+                                InventoryGrpcClient inventoryGrpcClient,
                                 OrderService orderService,
                                 @Qualifier("ProductCatalogAsyncExecutor") Executor productCatalogAsyncExecutor) {
         this.orderService = orderService;
         this.productCatalogGrpcClient = productCatalogGrpcClient;
         this.productCatalogAsyncExecutor = productCatalogAsyncExecutor;
+        this.inventoryGrpcClient = inventoryGrpcClient;
     }
 
     @Override
