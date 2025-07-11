@@ -4,6 +4,7 @@ import com.ecommerce.orderservice.dto.OrderRequestDto;
 import com.ecommerce.orderservice.dto.OrderResponseDto;
 import com.ecommerce.orderservice.entity.Order;
 import com.ecommerce.orderservice.enums.OrderStatus;
+import com.ecommerce.orderservice.kafka.KafkaProducerService;
 import com.ecommerce.orderservice.mapper.OrderMapper;
 import com.ecommerce.orderservice.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import java.math.RoundingMode;
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
+    private final KafkaProducerService kafkaProducerService;
 
     @Override
     public OrderResponseDto createOrder(OrderRequestDto orderRequestDto) {
@@ -27,6 +29,7 @@ public class OrderServiceImpl implements OrderService {
         BigDecimal roundedAmount = BigDecimal.valueOf(amount).setScale(3, RoundingMode.HALF_UP);
         orderRequestDto.setAmount(roundedAmount.doubleValue());
         Order order = orderRepository.save(OrderMapper.toObject(orderRequestDto));
+        kafkaProducerService.sendOrderCreatedEvent(order);
         return OrderMapper.toDto(order);
     }
 
