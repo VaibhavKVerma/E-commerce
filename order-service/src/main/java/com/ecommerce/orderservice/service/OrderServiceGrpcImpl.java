@@ -1,5 +1,7 @@
 package com.ecommerce.orderservice.service;
 
+import com.ecommerce.orderservice.dto.ItemsInventoryRequest;
+import com.ecommerce.orderservice.dto.ItemsInventoryResponse;
 import com.ecommerce.orderservice.dto.OrderResponseDto;
 import com.ecommerce.orderservice.entity.Product;
 import com.ecommerce.orderservice.grpc.InventoryGrpcClient;
@@ -39,23 +41,30 @@ public class OrderServiceGrpcImpl extends OrderServiceGrpc.OrderServiceImplBase 
         this.inventoryGrpcClient = inventoryGrpcClient;
     }
 
+    private Product fetchProductDetails(String productId, int quantity) {
+        log.info("Fetching product details for ID: {}", productId);
+        Product product = productCatalogGrpcClient.getProductDetails(productId);
+
+        if (product == null) {
+            throw new CompletionException(
+                    Status.NOT_FOUND
+                            .withDescription("Product not found: " + productId)
+                            .asRuntimeException()
+            );
+        }
+
+        product.setQuantity(quantity);
+        return product;
+    }
+
     @Override
     public void createOrder(CreateOrderRequest request, StreamObserver<OrderResponse> responseObserver) {
         List<CompletableFuture<Product>> futures = new ArrayList<>();
         for (var productRequest : request.getProductsList()) {
-            CompletableFuture<Product> future = CompletableFuture.supplyAsync(() -> {
-                log.info("Getting Product Details on thread : {}", Thread.currentThread().getName());
-                Product product = productCatalogGrpcClient.getProductDetails(productRequest.getProductId());
-                if (product == null) {
-                    throw new CompletionException(
-                            Status.NOT_FOUND
-                                    .withDescription("Product not found: " + productRequest.getProductId())
-                                    .asRuntimeException()
-                    );
-                }
-                product.setQuantity(Integer.parseInt(productRequest.getProductQuantity()));
-                return product;
-            }, productCatalogAsyncExecutor);
+            CompletableFuture<Product> future = CompletableFuture.supplyAsync(() ->
+                            fetchProductDetails(productRequest.getProductId(), Integer.parseInt(productRequest.getProductQuantity())),
+                    productCatalogAsyncExecutor
+            );
             futures.add(future);
         }
 
@@ -75,6 +84,17 @@ public class OrderServiceGrpcImpl extends OrderServiceGrpc.OrderServiceImplBase 
                             .asRuntimeException());
                     return;
                 }
+
+                ItemsInventoryResponse inventoryResponse = this.inventoryGrpcClient.getItemsStock(ItemsInventoryRequest
+                        .builder()
+                        .productList(products)
+                        .build());
+
+                if(inventoryResponse.getProductList().size() != products.size()) {
+                    log.error("All Items unavailable right now");
+                    responseObserver.onError(Status.NOT_FOUND.withDescription("All Items Unavailable").asRuntimeException());
+                }
+
                 OrderResponseDto response = orderService.createOrder(OrderGrpcMapper.toDto(request, products));
                 responseObserver.onNext(OrderGrpcMapper.toResponse(response));
                 responseObserver.onCompleted();
@@ -86,7 +106,7 @@ public class OrderServiceGrpcImpl extends OrderServiceGrpc.OrderServiceImplBase 
     public void getOrderDetails(GetOrderDetailsRequest request, StreamObserver<OrderResponse> responseObserver) {
         Long orderId = Long.valueOf(request.getOrderId());
         OrderResponseDto response = orderService.getOrder(orderId);
-        if(response == null) {
+        if (response == null) {
             responseObserver.onError(Status.NOT_FOUND.withDescription("Order with id " + orderId + " not found.").asException());
             return;
         }

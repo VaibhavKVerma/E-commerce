@@ -36,7 +36,7 @@ public class KafkaProducerServiceImpl implements KafkaProducerService {
         CompletableFuture<SendResult<String, Object>> future = kafkaTemplate.send(topic, message);
         future.whenComplete((result, throwable) -> {
             if (throwable != null) {
-                log.info("Message {} sent for topic {} succesfully.", message, result.getRecordMetadata().topic());
+                log.info("Message {} sent for topic {} successfully.", message, result.getRecordMetadata().topic());
             } else {
                 log.error("Message {} for topic {} failed.", message, result.getRecordMetadata().topic());
             }

@@ -18,7 +18,7 @@ import java.util.List;
 public class InventoryGrpcClient {
     private final InventoryServiceGrpc.InventoryServiceBlockingStub inventoryServiceBlockingStub;
 
-    public ItemsInventoryResponse getItemStock(ItemsInventoryRequest request) {
+    public ItemsInventoryResponse getItemsStock(ItemsInventoryRequest request) {
         List<GetItemRequest> list = request.getProductList().stream()
                 .map(item -> GetItemRequest
                         .newBuilder()
