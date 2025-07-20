@@ -5,13 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2323fba-2209-437f-bf3b-b98168deaf5d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/ecommerce/inventoryservice/config/KafkaConsumerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/ecommerce/inventoryservice/kafka/KafkaConsumerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/ecommerce/inventoryservice/kafka/KafkaConsumerServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/ecommerce/inventoryservice/entity/Inventory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/ecommerce/inventoryservice/repository/InventoryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/ecommerce/inventoryservice/service/InventoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/grpc/InventoryGrpcClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/grpc/InventoryGrpcClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/kafka/KafkaProducerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/kafka/KafkaProducerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/service/OrderServiceGrpcImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/order-service/src/main/java/com/ecommerce/orderservice/service/OrderServiceGrpcImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/com/ecommerce/inventoryservice/config/KafkaConsumerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/ecommerce/inventoryservice/config/KafkaConsumerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/com/ecommerce/inventoryservice/kafka/KafkaConsumerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/ecommerce/inventoryservice/kafka/KafkaConsumerServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-service/src/main/java/com/ecommerce/inventoryservice/service/InventoryServiceGrpcImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-service/src/main/java/com/ecommerce/inventoryservice/service/InventoryServiceGrpcImpl.java" afterDir="false" />
     </list>
     <list id="0a097596-d667-43f0-8e77-3f07cf02b2f5" name="Unversioned" comment="Unversioned" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +26,8 @@
       <list>
         <option value="HTTP Request" />
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -40,8 +42,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;git@github.com:VaibhavKVerma/E-commerce.git&quot;,
-    &quot;accountId&quot;: &quot;c61eb23d-866e-4044-8b3a-482926041058&quot;
+    &quot;url&quot;: &quot;https://github.com/VaibhavKVerma/E-commerce.git&quot;,
+    &quot;accountId&quot;: &quot;9d6dcfe4-5df2-41d7-9120-f30d15a8aba0&quot;
   }
 }</component>
   <component name="KubernetesApiPersistence">{}</component>
@@ -77,6 +79,7 @@
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;Spring Boot.InventoryServiceApplication.executor&quot;: &quot;Run&quot;,
@@ -84,7 +87,7 @@
     &quot;Spring Boot.ProductCatalogServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Vaibhav Verma/Downloads/Backend Projects/E-commerce/order-service/src/main/proto&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/vaibhav/Downloads/Personal/E-commerce&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -95,7 +98,7 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
     &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;bigdataide_conn_settings&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -135,9 +138,8 @@
         <entry key="SpringBootApplicationConfigurationType">
           <value>
             <map>
-              <entry key="InventoryServiceApplication" value="STOPPED" />
-              <entry key="OrderServiceApplication" value="STOPPED" />
-              <entry key="ProductCatalogServiceApplication" value="STOPPED" />
+              <entry key="InventoryServiceApplication" value="FAILED" />
+              <entry key="ProductCatalogServiceApplication" value="FAILED" />
             </map>
           </value>
         </entry>
@@ -145,15 +147,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Docker.inventory-service: Compose Deployment">
-    <configuration name="Create Product | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/api-requests/grpc-requests/product-catalog-service/Create Product.http" executionIdentifier="#1" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="Delete Product | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/api-requests/grpc-requests/product-catalog-service/Delete Product.http" executionIdentifier="#1" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="Get Product By Id | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/api-requests/grpc-requests/product-catalog-service/Get Product By Id.http" executionIdentifier="#1" runType="Run single request">
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="E-commerce" />
       <method v="2">
@@ -163,6 +156,15 @@
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="E-commerce" />
       <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Create Product | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/api-requests/grpc-requests/product-catalog-service/Create Product.http" executionIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="Delete Product | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/api-requests/grpc-requests/product-catalog-service/Delete Product.http" executionIdentifier="#1" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="Get Product By Id | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/api-requests/grpc-requests/product-catalog-service/Get Product By Id.http" executionIdentifier="#1" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="InventoryServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
@@ -259,11 +261,13 @@
       <workItem from="1751807138431" duration="4361000" />
       <workItem from="1751894180448" duration="5301000" />
       <workItem from="1751920204464" duration="1353000" />
-      <workItem from="1752196453097" duration="7407000" />
-      <workItem from="1752313849028" duration="4567000" />
-      <workItem from="1752916249073" duration="1254000" />
-      <workItem from="1752917745287" duration="6597000" />
-      <workItem from="1752929357580" duration="2434000" />
+      <workItem from="1752196453097" duration="6963000" />
+      <workItem from="1752383808304" duration="5408000" />
+      <workItem from="1752950642874" duration="426000" />
+      <workItem from="1752951098881" duration="137000" />
+      <workItem from="1752951243890" duration="1521000" />
+      <workItem from="1752953332189" duration="583000" />
+      <workItem from="1753012059876" duration="1833000" />
     </task>
     <task id="LOCAL-00001" summary="Product Catalog Service Implementation">
       <option name="closed" value="true" />
@@ -313,15 +317,7 @@
       <option name="project" value="LOCAL" />
       <updated>1751921522612</updated>
     </task>
-    <task id="LOCAL-00007" summary="Kafka Producer Event Integrated On Order Created">
-      <option name="closed" value="true" />
-      <created>1752203612836</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1752203612836</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -334,9 +330,7 @@
     <MESSAGE value="Order Service Implementation get and update" />
     <MESSAGE value="Setup for Notification and Inventory" />
     <MESSAGE value="Inventory Service and Kafka setup" />
-    <MESSAGE value="Kafka Producer Event Integrated On Order Created" />
-    <option name="LAST_COMMIT_MESSAGE" value="Kafka Producer Event Integrated On Order Created" />
-    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="LAST_COMMIT_MESSAGE" value="Inventory Service and Kafka setup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
